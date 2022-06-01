@@ -99,8 +99,8 @@ letter-spacing: 3px;</string>
     </property>
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>220</y>
+      <x>230</x>
+      <y>60</y>
       <width>189</width>
       <height>48</height>
      </rect>
