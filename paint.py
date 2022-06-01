@@ -22,7 +22,7 @@ class Window(QMainWindow):
         self.setFixedSize(1280,720)
 
         # Remove Window Title Bar
-        # self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         
         # Create Drawing Portion
         self.image = QImage(self.size(), QImage.Format.Format_RGB32)
@@ -37,6 +37,8 @@ class Window(QMainWindow):
 
 
         # Connect Methods to Buttons
+        self.closeLabel.linkHovered.connect(self.exitApplication)
+        # self.closeLabel.linkActivated.connect(self.exitApplication)
         self.clearButton.clicked.connect(self.clear)
 
 
@@ -127,9 +129,12 @@ class Window(QMainWindow):
 
     # Clear Key Event
     def keyPressEvent(self,event):
-        if event.button() == Qt.Key.Key_C:
-            print("Clicked")
-            self.clear()
+        if event.key() == Qt.Key.Key_C:
+            self.clear(event)
+
+
+    def exitApplication(self):
+        print("closed")
         
 
 
