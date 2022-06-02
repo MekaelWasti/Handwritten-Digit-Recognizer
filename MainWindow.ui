@@ -84,6 +84,9 @@ letter-spacing: 3px;</string>
      <height>720</height>
     </rect>
    </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
    <property name="styleSheet">
     <string notr="true">background: rgb(236, 236, 236)</string>
    </property>
@@ -93,34 +96,6 @@ letter-spacing: 3px;</string>
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
-   <widget class="QPushButton" name="recognizeButton_2">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>220</y>
-      <width>189</width>
-      <height>48</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Inter</family>
-      <pointsize>12</pointsize>
-      <italic>false</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font: 700 12pt &quot;Inter&quot;;
-letter-spacing: 3px;</string>
-    </property>
-    <property name="text">
-     <string>RECOGNIZE</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QPushButton" name="clearButton">
    <property name="enabled">
@@ -186,10 +161,7 @@ color: rgb(50, 50, 50)
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="closeLabel">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
+  <widget class="QPushButton" name="closeButton">
    <property name="geometry">
     <rect>
      <x>1240</x>
@@ -199,19 +171,34 @@ color: rgb(50, 50, 50)
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">QPushButton {
+	border: none;
+	image: url(:/resources/Close.png);
+}
+
+QPushButton:hover:!pressed {
+	image: url(:/resources/Close_hover.png);
+}
+
+</string>
    </property>
    <property name="text">
     <string/>
    </property>
-   <property name="pixmap">
-    <pixmap>Close.png</pixmap>
+   <property name="iconSize">
+    <size>
+     <width>40</width>
+     <height>33</height>
+    </size>
    </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-   <property name="wordWrap">
+   <property name="autoDefault">
     <bool>false</bool>
+   </property>
+   <property name="default">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
   <zorder>digitResult</zorder>
@@ -219,10 +206,10 @@ color: rgb(50, 50, 50)
   <zorder>label</zorder>
   <zorder>clearButton</zorder>
   <zorder>label_2</zorder>
-  <zorder>closeLabel</zorder>
+  <zorder>closeButton</zorder>
  </widget>
  <resources>
-  <include location="logo.qrc"/>
+  <include location="resources.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMenuBar, QMenu
 from PyQt6.QtGui import QIcon, QImage, QColor, QAction, QPainter, QPen
-from PyQt6.QtCore import Qt, QPoint
+from PyQt6.QtCore import Qt, QPoint, QEvent
 from PyQt6 import uic
 
 import sys
@@ -15,9 +15,9 @@ class Window(QMainWindow):
     def __init__(self):
         # Initial Set Up
         super(Window,self).__init__()
-        uic.loadUi("paintApp\MainWindow.ui",self)
+        uic.loadUi("MainWindow.ui",self)
         self.setWindowTitle("Handwritten Digit Recognizer")
-        self.setWindowIcon(QIcon("paintApp\icon.png"))
+        self.setWindowIcon(QIcon("icon.png"))
         self.resize(1280,720)
         self.setFixedSize(1280,720)
 
@@ -35,13 +35,24 @@ class Window(QMainWindow):
 
         self.lastPoint = QPoint()
 
-
         # Connect Methods to Buttons
-        self.closeLabel.linkHovered.connect(self.exitApplication)
-        # self.closeLabel.linkActivated.connect(self.exitApplication)
+        self.closeButton.clicked.connect(self.exitApplication)
         self.clearButton.clicked.connect(self.clear)
+        
+        # Change button on hover
+        self.closeButton.setStyleSheet(
+            "QPushButton {"
+                "border: none;"
+	            "image: url(Close.png)"
+            "}"
 
+            "QPushButton:hover:!pressed {"
+                "border: none;"
+	            "image: url(Close_hover.png)"
+            "}"
+            )
 
+        
         # Menu
         # mainMenu = self.menuBar()
         # fileMenu = mainMenu.addMenu("File")
@@ -135,8 +146,7 @@ class Window(QMainWindow):
 
     def exitApplication(self):
         print("closed")
-        
-
+        QApplication.quit()
 
 
     
