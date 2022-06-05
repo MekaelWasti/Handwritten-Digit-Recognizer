@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(1280, 720)
+        Form.resize(1282, 720)
         Form.setAutoFillBackground(False)
         Form.setStyleSheet("/*background:rgb(42, 42, 42)*/")
         self.label = QtWidgets.QLabel(Form)
@@ -92,12 +92,57 @@ class Ui_Form(object):
         self.closeButton.setDefault(False)
         self.closeButton.setFlat(True)
         self.closeButton.setObjectName("closeButton")
+        self.resultView = QtWidgets.QLabel(Form)
+        self.resultView.setGeometry(QtCore.QRect(972, 393, 189, 48))
+        self.resultView.setStyleSheet("")
+        self.resultView.setText("")
+        self.resultView.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.resultView.setObjectName("resultView")
+        self.maximizeButton = QtWidgets.QPushButton(Form)
+        self.maximizeButton.setGeometry(QtCore.QRect(1200, 0, 40, 33))
+        self.maximizeButton.setStyleSheet("QPushButton {\n"
+"    border: none;\n"
+"    image: url(:/resources/Maximize.png);\n"
+"}\n"
+"\n"
+"QPushButton:hover:!pressed {\n"
+"    image: url(:/resources/Maximize_hover.png);\n"
+"}\n"
+"\n"
+"")
+        self.maximizeButton.setText("")
+        self.maximizeButton.setIconSize(QtCore.QSize(40, 33))
+        self.maximizeButton.setAutoDefault(False)
+        self.maximizeButton.setDefault(False)
+        self.maximizeButton.setFlat(True)
+        self.maximizeButton.setObjectName("maximizeButton")
+        self.minimizeButton = QtWidgets.QPushButton(Form)
+        self.minimizeButton.setGeometry(QtCore.QRect(1160, 0, 40, 33))
+        self.minimizeButton.setStyleSheet("QPushButton {\n"
+"    border: none;\n"
+"    image: url(:/resources/Minimize.png);\n"
+"}\n"
+"\n"
+"QPushButton:hover:!pressed {\n"
+"    image: url(:/resources/Minimize_hover.png);\n"
+"}\n"
+"\n"
+"")
+        self.minimizeButton.setText("")
+        self.minimizeButton.setIconSize(QtCore.QSize(40, 33))
+        self.minimizeButton.setAutoDefault(False)
+        self.minimizeButton.setDefault(False)
+        self.minimizeButton.setFlat(True)
+        self.minimizeButton.setObjectName("minimizeButton")
         self.digitResult.raise_()
         self.recognizeButton.raise_()
         self.label.raise_()
         self.clearButton.raise_()
         self.label_2.raise_()
         self.closeButton.raise_()
+        self.resultView.raise_()
+        self.maximizeButton.raise_()
+        self.minimizeButton.raise_()
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)

@@ -1,7 +1,8 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QMenuBar, QMenu
 from PyQt6.QtGui import QIcon, QImage, QColor, QAction, QPainter, QPen
-from PyQt6.QtCore import Qt, QPoint, QEvent
+from PyQt6.QtCore import Qt, QPoint, QEvent, QSize
 from PyQt6 import uic
+from mlalgo import *
 
 import sys
 
@@ -25,19 +26,24 @@ class Window(QMainWindow):
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
         
         # Create Drawing Portion
-        self.image = QImage(self.size(), QImage.Format.Format_RGB32)
+        # size = QSize(53,20)
+        size = QSize(853,720)
+        self.image = QImage(size, QImage.Format.Format_RGB32)
         self.image.fill(QColor(23,23,23)) #Black Fill
         # self.image.fill(QColor(255,255,255)) #White Fill
 
         self.drawing = False
-        self.brushSize = 2
+        # self.brushSize = 2
+        self.brushSize = 25
         self.brushColor = QColor(255,255,255)
 
         self.lastPoint = QPoint()
 
         # Connect Methods to Buttons
+        self.recognizeButton.clicked.connect(self.recognize)
         self.closeButton.clicked.connect(self.exitApplication)
         self.clearButton.clicked.connect(self.clear)
+        self.resultLabel = self.resultView
         
         # Change button on hover
         self.closeButton.setStyleSheet(
@@ -49,6 +55,30 @@ class Window(QMainWindow):
             "QPushButton:hover:!pressed {"
                 "border: none;"
 	            "image: url(Close_hover.png)"
+            "}"
+            )
+        
+        self.maximizeButton.setStyleSheet(
+            "QPushButton {"
+                "border: none;"
+	            "image: url(Maximize.png)"
+            "}"
+
+            "QPushButton:hover:!pressed {"
+                "border: none;"
+	            "image: url(Maximize_hover.png)"
+            "}"
+            )
+        
+        self.minimizeButton.setStyleSheet(
+            "QPushButton {"
+                "border: none;"
+	            "image: url(Minimize.png)"
+            "}"
+
+            "QPushButton:hover:!pressed {"
+                "border: none;"
+	            "image: url(Minimize_hover.png)"
             "}"
             )
 
@@ -131,7 +161,9 @@ class Window(QMainWindow):
 
     def paintEvent(self, event):
         canvasPainter = QPainter(self)
-        canvasPainter.drawImage(self.rect(),self.image,self.image.rect())
+        # canvasPainter.drawImage(self.rect(),self.image,self.image.rect())
+        canvasPainter.drawImage(0,0,self.image)
+
 
     # Clear Event
     def clear(self,event):
@@ -147,6 +179,26 @@ class Window(QMainWindow):
     def exitApplication(self):
         print("closed")
         QApplication.quit()
+
+    # Recognize Event
+    def recognize(self):
+        # self.image.save("1.png")
+        self.image.save("1.png")
+        # image = test()
+        result,wordedNumber = test()
+        
+        self.resultLabel.setText(str(result) + "   |   " + wordedNumber)
+        self.resultLabel.setStyleSheet(
+            "QLabel {"
+                "font: 700 21pt 'Inter';"
+                "color: rgb(50,50,50);"
+                "text-align: center;"
+                "letter-spacing: 3px"
+            "}"
+            )
+
+
+        
 
 
     

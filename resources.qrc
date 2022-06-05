@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="resources">
+    <file>Maximize_hover.png</file>
+    <file>Minimize_hover.png</file>
     <file>Close_hover.png</file>
     <file>Close.png</file>
     <file>icon.png</file>
